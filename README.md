@@ -4,9 +4,9 @@ simple concept app made in nextjs to play with ssr that saves notes
 
 ###TODO
 
-- [ ] setup repo
-- [ ] connect repo to vercel for deployment
-- [ ] connect database
+- [x] setup repo
+- [x] connect repo to vercel for deployment
+- [x] connect database
 - [ ] make simple page mock
 - [ ] adding note collection from db
 - [ ] adding routing
