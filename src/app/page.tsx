@@ -1,17 +1,10 @@
 import React from "react";
 import { db } from "../server/db/index";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
-  const posts = await db.query.posts.findMany();
-  const notes = posts.map((p) => {
-    return {
-      id: p.id,
-      content: p.text,
-      author: p.author,
-      createdAt: p.createdAt,
-      updatedAt: p.updatedAt,
-    };
-  });
+  const notes = await db.query.posts.findMany();
 
   return (
     <main className="flex min-h-screen flex-row justify-center pb-10">
@@ -23,7 +16,7 @@ export default async function HomePage() {
           >
             <p>
               {note.author} on {note.createdAt.toLocaleString()} said{" "}
-              {note.content}
+              {note.text}
             </p>
             {note.createdAt != note.updatedAt && note.updatedAt && (
               <p>updated on {note.updatedAt.toLocaleString()}</p>
