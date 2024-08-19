@@ -1,12 +1,12 @@
 import React from "react";
-import { db } from "../server/db/index";
 import { SignedIn } from "@clerk/nextjs";
 import PostForm from "./_conmponents/postForm";
+import { getNotes } from "~/db_queries";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const notes = await db.query.posts.findMany();
+  const notes=await getNotes();
 
   return (
     <main className="flex min-h-screen flex-row justify-center pb-10">
