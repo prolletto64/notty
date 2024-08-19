@@ -11,7 +11,7 @@ simple concept app made in nextjs to play with ssr that saves notes
 - [x] remove ts and eslint errors to speed up build
 - [x] adding note collection from db
 - [ ] adding routing
-- [ ] implementing note upload
+- [x] implementing note upload
 - [ ] implement error handling
 - [ ] implement user auth
 - [ ] implementing private notes
