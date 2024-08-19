@@ -6,10 +6,10 @@ import { getNotes } from "~/db_queries";
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const notes=await getNotes();
+  const notes = await getNotes();
 
   return (
-    <main className="flex min-h-screen flex-row justify-center pb-10">
+    <main className="flex min-h-screen flex-col justify-center pb-10">
       <div className="flex flex-wrap justify-center gap-4">
         {notes.map((note, i) => (
           <div
@@ -25,12 +25,12 @@ export default async function HomePage() {
             )}
           </div>
         ))}
-        {
-          <SignedIn>
-            <PostForm />
-          </SignedIn>
-        }
       </div>
+      <SignedIn>
+        <div className="flex justify-center pt-16 p-4">
+          <PostForm />
+        </div>
+      </SignedIn>
     </main>
   );
 }
