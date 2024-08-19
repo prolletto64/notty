@@ -6,7 +6,7 @@ export default async function NotePage({ params }: { params: { id: number } }) {
   const note = await getSingleNote(params.id);
   return (
     <div>
-      {note!.author == user!.username && (
+      {note&&note.author == user!.username && (
         <div>
           <form action="/updatepost" method="post">
             <textarea
@@ -14,7 +14,7 @@ export default async function NotePage({ params }: { params: { id: number } }) {
               name="note-text"
               id="note-text"
             >
-              {note!.text}
+              {note.text}
             </textarea>
             <input type="hidden" name="id" value={params.id} />
             <div>
@@ -22,15 +22,17 @@ export default async function NotePage({ params }: { params: { id: number } }) {
             </div>
           </form>
           <form action="/deletepost" method="post">
+            <input type="hidden" name="id" value={params.id} />
             <input type="submit" value="delete" />
           </form>
         </div>
       )}
-      {note!.author != user!.username && (
+      {note&&note.author != user!.username && (
         <div className="m-4 h-96 w-96 bg-yellow-300 p-4 text-black">
-          {note!.text}
+          {note.text}
         </div>
       )}
+      {!note&&<div><p>NOTE NOT FOUND</p></div>}
     </div>
   );
 }

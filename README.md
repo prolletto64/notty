@@ -14,7 +14,8 @@ simple concept app made in nextjs to play with ssr that saves notes
 - [x] implementing note upload
 - [x] implement query security throught server-only
 - [ ] implement error handling
-- [ ] implement user auth
+- [x] implement note deletion
+- [x] implement note editing
+- [x] implement user auth
 - [ ] implementing private notes
-- [ ] implement note deletion
 - [ ] add analytics
