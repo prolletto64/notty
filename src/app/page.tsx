@@ -1,5 +1,7 @@
 import React from "react";
 import { db } from "../server/db/index";
+import { SignedIn } from "@clerk/nextjs";
+import PostForm from "./_conmponents/postForm";
 
 export const dynamic = "force-dynamic";
 
@@ -23,6 +25,11 @@ export default async function HomePage() {
             )}
           </div>
         ))}
+        {
+          <SignedIn>
+            <PostForm />
+          </SignedIn>
+        }
       </div>
     </main>
   );

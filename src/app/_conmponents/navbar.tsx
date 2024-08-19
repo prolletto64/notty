@@ -1,9 +1,4 @@
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignOutButton,
-} from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 export default function NavBar() {
   return (
@@ -13,7 +8,7 @@ export default function NavBar() {
         <SignInButton />
       </SignedOut>
       <SignedIn>
-        <SignOutButton />
+        <UserButton />
       </SignedIn>
     </div>
   );
