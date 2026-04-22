@@ -1,5 +1,5 @@
 import React from "react";
-import { SignedIn } from "@clerk/nextjs";
+import { Show } from "@clerk/nextjs";
 import PostForm from "./_conmponents/postForm";
 import { getNotes } from "~/db_queries";
 import Link from "next/link";
@@ -28,11 +28,11 @@ export default async function HomePage() {
           </Link>
         ))}
       </div>
-      <SignedIn>
+      <Show when={"signed-in"}>
         <div className="flex justify-center p-4 pt-16">
           <PostForm />
         </div>
-      </SignedIn>
+      </Show>
     </main>
   );
 }
