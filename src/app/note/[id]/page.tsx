@@ -1,38 +1,29 @@
-import { currentUser } from "@clerk/nextjs/server";
 import { getSingleNote } from "~/db_queries";
 
-export default async function NotePage({ params }: { params: { id: number } }) {
-  const user = await currentUser();
-  const note = await getSingleNote(params.id);
+// ✅ For Next.js 15 and 16 – params is a Promise
+export default async function NotePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params; // ← MUST await the promise
+  const noteId = parseInt(id, 10);
+
+  if (isNaN(noteId)) {
+    return <div>Invalid note ID</div>;
+  }
+
+  const note = await getSingleNote(noteId);
+
+  if (!note) {
+    return <div>Note not found</div>;
+  }
+
   return (
     <div>
-      {note&&note.author == user!.username && (
-        <div>
-          <form action="/updatepost" method="post">
-            <textarea
-              className="m-4 h-96 w-96 bg-yellow-300 p-4 text-black"
-              name="note-text"
-              id="note-text"
-            >
-              {note.text}
-            </textarea>
-            <input type="hidden" name="id" value={params.id} />
-            <div>
-              <input type="submit" value="update" />
-            </div>
-          </form>
-          <form action="/deletepost" method="post">
-            <input type="hidden" name="id" value={params.id} />
-            <input type="submit" value="delete" />
-          </form>
-        </div>
-      )}
-      {note&&note.author != user!.username && (
-        <div className="m-4 h-96 w-96 bg-yellow-300 p-4 text-black">
-          {note.text}
-        </div>
-      )}
-      {!note&&<div><p>NOTE NOT FOUND</p></div>}
+      <h1>{note.text}</h1>
+      <p>Author: {note.author}</p>
+      <p>Created: {new Date(note.createdAt).toLocaleString()}</p>
     </div>
   );
 }
