@@ -2,8 +2,23 @@
 ###what?
 simple concept app made in nextjs to play with ssr that saves notes
 
-###TODO
+###Tech Stack
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+- Clerk (Authentication)
+- Deployed on Vercel
 
+###Live Demo
+[https://notty.vercel.app](https://notty.vercel.app)
+
+###Getting Started
+1. Clone the repo
+2. `npm install`
+3. Set up environment variables (see `.env.example`)
+4. `npm run dev`
+
+###TODO
 - [x] setup repo
 - [x] connect repo to vercel for deployment
 - [x] connect database
